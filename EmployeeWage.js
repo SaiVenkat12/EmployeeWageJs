@@ -13,6 +13,8 @@ let totalEmpHrs = 0;
 let totalWage=0;
 let dayCount=0;
 let empDailyWageArr = new Array();
+let empDailyWageMap=new Map();
+
 function MonthlyEmpWage() {
     while (totalEmpHrs < MaxHrs && totalDays < empWorkingDays) {
         let check = Math.floor(Math.random() * 10) % 3;
@@ -29,6 +31,7 @@ function MonthlyEmpWage() {
         totalEmpHrs += empHrs;
         let empWage = wagePerHr * empHrs;
         empDailyWageArr.push(empWage);
+        empDailyWageMap.set(totalDays,empWage);
         //console.log("Employee daily Wage = "+empWage);
         empMonthlyWage += empWage;
     }
@@ -46,9 +49,13 @@ function EmpMapWithWageAndDate(wage)
 function EmpFullTimeWage(wage){
     return wage.includes("160");
 }
+function EmpWageMap() {
+    console.log("Daily Wage Map");
+    console.log(empDailyWageMap);
+}
 function EmpWageArray() {
-    //console.log("Daily Wage Array");
-    //console.log(empDailyWageArr);
+    console.log("Daily Wage Array");
+    console.log(empDailyWageArr);
 
     empDailyWageArr.forEach(DailyWageSum);
     console.log(totalWage);
@@ -63,7 +70,8 @@ function EmpWageArray() {
     console.log(empMapArr.find(EmpFullTimeWage));
 }
 MonthlyEmpWage();
-EmpWageArray();
+//EmpWageArray();
+EmpWageMap();
 
 
 
